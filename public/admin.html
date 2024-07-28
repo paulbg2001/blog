@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script> 
+
+</head>
+<body>
+  <div class="container mt-5">
+    <h1>Admin - Create a New Blog Post</h1>
+    <form id="loginForm" class="mb-3">
+      <div class="form-group">
+        <input type="password" id="password" class="form-control" placeholder="Enter password" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <form id="postForm" style="display:none;" enctype="multipart/form-data">
+      <div class="form-group">
+        <input type="text" id="title" name="title" class="form-control" placeholder="Title" required>
+      </div>
+      <div class="form-group">
+        <textarea id="shortText" name="shortText" class="form-control" placeholder="Short Text" required></textarea>
+      </div>
+      <div class="form-group">
+        <textarea id="longText" name="longText" class="form-control" placeholder="Long Text" required></textarea>
+      </div>
+      <div class="form-group">
+        <input type="file" id="image" name="image" class="form-control-file" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Create Post</button>
+    </form>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="admin.js"></script>
+  <script>
+    CKEDITOR.replace('longText');
+  </script>
+</body>
+</html>

@@ -1,38 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const postForm = document.getElementById('postForm');
-    const postsDiv = document.getElementById('posts');
-  
-    // Funcție pentru a încărca toate postările
-    const loadPosts = async () => {
-      const response = await fetch('/api/posts');
+  const postsDiv = document.getElementById('posts');
+  const searchInput = document.getElementById('searchInput');
+
+  // Funcție pentru a încărca toate postările
+  const loadPosts = async (query = '') => {
+    try {
+      const response = await fetch(`/api/posts${query ? `?q=${query}` : ''}`);
       const posts = await response.json();
-      postsDiv.innerHTML = posts.map(post => `
-        <div class="post">
-          <h3>${post.title}</h3>
-          <p>${post.content}</p>
-          <small>${new Date(post.created_at).toLocaleString()}</small>
-        </div>
-      `).join('');
-    };
-  
-    // Funcție pentru a crea o nouă postare
-    postForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const title = document.getElementById('title').value;
-      const content = document.getElementById('content').value;
-  
-      const response = await fetch('/api/posts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title, content })
-      });
-  
-      if (response.ok) {
-        loadPosts();
-        postForm.reset();
+      if (Array.isArray(posts)) {
+        postsDiv.innerHTML = posts.map(post => `
+          <div class="col-md-4 mb-4">
+            <div class="card" style="width: 18rem;">
+              ${post.image_path ? `<img src="${post.image_path}" class="card-img-top" alt="${post.title}">` : ''}
+              <div class="card-body">
+                <h5 class="card-title"><strong>${post.title}</strong></h5>
+                <p class="card-text">${post.short_text}</p>
+                <a href="/post/${post.id}" class="btn btn-primary">Read More</a>
+              </div>
+            </div>
+          </div>
+        `).join('');
+      } else {
+        console.error('Unexpected response format', posts);
       }
-    });
-  
-    loadPosts();
+    } catch (error) {
+      console.error('Error loading posts', error);
+    }
+  };
+
+  loadPosts();
+
+  // Adaugă un event listener pentru search input
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.trim();
+    loadPosts(query);
   });
-  
+});
