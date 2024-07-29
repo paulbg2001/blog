@@ -14,19 +14,21 @@ body {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1, h2 {
+h1,
+h2 {
   color: #333;
 }
 
-.navbar{
+.navbar {
   background-color: #555;
   padding: 20px;
 }
-.container-fluid form{
+
+.container-fluid form {
   margin-bottom: 0px;
 }
 
-.admin-button{
+.admin-button {
   color: #333;
   background-color: aquamarine;
   padding: 20px;
@@ -36,7 +38,9 @@ form {
   margin-bottom: 20px;
 }
 
-input[type="text"], input[type="password"], textarea {
+input[type="text"],
+input[type="password"],
+textarea {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
@@ -57,16 +61,31 @@ button:hover {
   background: #555;
 }
 
+.row {
+  display: grid;
+  grid-template-columns: repeat(4, 0fr);
+  gap: 10px;
+  justify-content: space-evenly;
+}
+
+.col-md-4 {
+  margin-top: 50px;
+  flex: 0;
+  
+  
+}
+
 /* BLOG PAGE */
 
-.container .img-fluid{
+.container .img-fluid {
   width: 50%;
 }
 
-.blog-long-text{
+.blog-long-text {
   width: 100%;
 }
 
-#long-text{
+#long-text {
   width: 100%;
 }
+
